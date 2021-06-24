@@ -1,17 +1,13 @@
 function pos_orient = MGD()
 
-% Lower bound & upper bound // will be replaced by l'espace de travaille
-%lb = -Inf(1, 6);    ub = Inf(1,6);
-lb = [-Inf, -Inf, -Inf, -Inf, -pi/4, -pi/4]; ub = [Inf, Inf, Inf, Inf, pi/4, pi/4];
-pos_orient_init = ones(1,6);
+% Lower bound & upper bound 
+%lb = [-Inf, -Inf, -Inf, -Inf, -pi/4, -pi/4]; 
+%ub = [Inf, Inf, Inf, Inf, pi/4, pi/4];
+lb = [-0.00141, -0.00171, -0.00001, -0.85651, -0.70181, -0.18191]; 
+ub = [0.0011, 0.00171, 0.021, 0.85651, 0.78541, 0.1891];
+pos_orient_init = ones(1,6)*0.01;
 opts = optimoptions(@fmincon,'Algorithm','interior-point','Display','off');
 pos_orient = fmincon(@(pos_orient)0,pos_orient_init,[],[],[],[],lb,ub, @fminconstr, opts);
-
-
-
-
-
-
 
 
 % func = @(pos_orient)constraints(pos_orient, L);
